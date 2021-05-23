@@ -1,0 +1,45 @@
+#!/bin/bash
+# by wishchin 2020-05-12  version 1.0
+## # Option “-x” is deprecated and might be removed in a later version of gnome-terminal.
+## Use “-- ” to terminate the options and put the command line to execute after it.
+ 
+#start
+source ~/catkin_ws/devel/setup.bash
+
+{
+#python service......
+gnome-terminal -t "python_trans" -x bash -c "python test_main.py;exec bash"
+}&
+
+sleep 10s
+
+{
+#rs_rtabmap.launch
+gnome-terminal -t "ur5_bringup" -x bash -c "cd ~/catkin_ws;roslaunch src/universal_robot/ur_modern_driver/launch/ur5_bringup.launch robot_ip:=192.168.1.107 ;exec bash"
+}&
+
+sleep 10s
+
+{
+#rs_rtabmap.launch
+gnome-terminal -t "rs_rgbd" -x bash -c "cd ~/catkin_ws;roslaunch src/realsense-ros/realsense2_camera/launch/rs_rgbd.launch  ;exec bash"
+}&
+
+sleep 10s
+{
+#cloud process!
+gnome-terminal -t "camshift_only_tracker" -x bash -c "rosrun object_detection camshift_only_tracker;exec bash"
+}&
+
+sleep 10s
+
+{
+#cloud process!
+gnome-terminal -t "new_ibvs_three_features" -x bash -c "rosrun ur5_vs new_ibvs_three_features;exec bash"
+}&
+
+sleep 20s
+
+
+
+#end 

@@ -1,0 +1,26 @@
+<package format="2">
+  <name>ur5_script_with_rg2</name>
+  <version>1.2.4</version>
+  <description>
+    This package provides ur5_script_with_rg2 capability.
+  </description>
+  <maintainer email="comeon-harry@todo.todo">Ivana Bildbotz</maintainer>
+  <license>BSD</license>
+
+  <url>http://ros.org/wiki/foo_core</url>
+  <author>comeon-harry</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+
+  <build_depend>message_generation</build_depend>
+
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>rospy</exec_depend>
+
+  <test_depend>python-mock</test_depend>
+
+  <doc_depend>doxygen</doc_depend>
+</package>
